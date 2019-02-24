@@ -1,0 +1,1 @@
+This program is though to be executing on a robot to perform some orders. At this step, it's supposed that the orders have already been transcribed from natural spoken language to strings of text, so we perform here the syntactic analysis
