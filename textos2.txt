@@ -1,0 +1,12 @@
+enciendete
+conectate
+desconectate
+apagate
+parate
+detente
+parar
+avanza
+avanza cuatro centimetros
+camina diez metros
+gira a la izquierda
+gira hacia tu derecha

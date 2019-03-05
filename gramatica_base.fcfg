@@ -3,12 +3,41 @@
 # Grammar Productions
 # ###################
 # S expansion productions
-S[SEM=?sem] -> VP[SEM=?sem] 
-VP[SEM=[ACCION=?val]] -> V[ACCION=?val]
+S[SEM=[ACCION=avanzar, CANTIDAD=?c, METRICA=?m]] -> V[ACCION=avanzar] SAdj[SEM=[CANTIDAD=?c, METRICA=?m]]
+S[SEM=[ACCION=girar, DIRECCION=?d]] -> V[ACCION=girar] SP[SEM=[DIRECCION=?d]]
+S[SEM=[ACCION=?a]] -> V[ACCION=?a]
+
+SP[SEM=[DIRECCION=?d]] -> Prep Det Nombre[DIRECCION=?d]
+
+SAdj[SEM=[CANTIDAD=?c, METRICA=?m]] -> Adj[CANTIDAD=?c] Nombre[METRICA=?m]
 
 
 # ###################
 # Lexical Productions
 # ###################
-V[ACCION=conectarse] -> 'enciendete' | 'enciende'
 
+Prep -> 'a' | 'hacia'
+Det -> 'la' | 'mi' | 'tu' | 'su'
+
+V[ACCION=conectarse] -> 'enciendete' | 'enciende' | 'conectate' | 'conecta' | 'activate' | 'activa'
+V[ACCION=desconectarse] -> 'desconectate' | 'desconecta' |'desconectar' | 'apagate' | 'apaga' | 'apagar' | 'desactivate' | 'desactiva' | 'apagar'
+V[ACCION=parar] -> 'parar' | 'parate' | 'para' | 'detente' | 'deten' | 'detener'
+V[ACCION=avanzar] -> 'avanza' | 'avanzar' | 'camina' | 'caminar'
+V[ACCION=girar] -> 'gira' | 'girar'
+
+
+Nombre[METRICA=centimetros] -> 'centimetro' | 'centimetros'
+Nombre[METRICA=metros] -> 'metro' | 'metros'
+Nombre[DIRECCION=derecha] -> 'derecha'
+Nombre[DIRECCION=izquierda] -> 'izquierda'
+
+Adj[CANTIDAD=uno] -> 'un' | 'uno'
+Adj[CANTIDAD=dos] -> 'dos'
+Adj[CANTIDAD=tres] -> 'tres'
+Adj[CANTIDAD=cuatro] -> 'cuatro'
+Adj[CANTIDAD=cinco] -> 'cinco'
+Adj[CANTIDAD=seis] -> 'seis'
+Adj[CANTIDAD=siete] -> 'siete'
+Adj[CANTIDAD=ocho] -> 'ocho'
+Adj[CANTIDAD=nueve] -> 'nueve'
+Adj[CANTIDAD=diez] -> 'diez'

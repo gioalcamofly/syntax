@@ -1,0 +1,67 @@
+% start S
+# ###################
+# Grammar Productions
+# ###################
+# S expansion productions
+S[SEM=[ACCION=reproducir, DISCO=?d, AUTOR=?a, CANCION=?c]] -> V[ACCION=reproducir] SP[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]]
+S[SEM=[ACCION=reproducir, DISCO=?d, AUTOR=?a, CANCION=?c]] -> V[ACCION=reproducir] SN[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]]
+S[SEM=[ACCION=parar]] -> V[ACCION=parar]
+S[SEM=[ACCION=reproducir]] -> V[ACCION=reproducir]
+
+SP[SEM=?s] -> Prep SN[SEM=?s]
+
+SN[SEM=[AUTOR=?a]] -> Nombre-Propio[SUBCAT=autor, AUTOR=?a]
+SN[SEM=[DISCO=?d]] -> Nombre-Propio[SUBCAT=disco, DISCO=?d]
+SN[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] -> Det Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]]
+SN[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] -> Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]]
+
+
+Nombre-Propio[SUBCAT=autor, AUTOR=[NOMBRE=?n, APELLIDO=?a]] -> Nombre-Propio-Nombre[NOMBRE=?n] Nombre-Propio-Apellido[APELLIDO=?a]
+Nombre-Propio[SUBCAT=disco, DISCO=?d] -> Nombre-Propio-Disco[DISCO=?d]
+Nombre-Propio[SUBCAT=disco, DISCO=?d] -> Nombre-Propio-Disco[DISCO=?d] Nombre-Propio-Disco[DISCO=?d]
+Nombre-Propio[SUBCAT=disco, DISCO=?d] -> Nombre-Propio-Disco[DISCO=?d] Nombre-Propio-Disco[DISCO=?d] Nombre-Propio-Disco[DISCO=?d]
+
+Nominal -> Nombre[TIPO=disco]
+Nominal[SEM=[CANCION=?n]] -> Nombre[TIPO=cancion] SAdj[NOM=?n]
+Nominal[SEM=[DISCO=?n]] -> Nombre[TIPO=disco] SAdj[NOM=?n]
+Nominal[SEM=[CANCION=?n]] -> SAdj[NOM=?n] Nombre[TIPO=cancion] 
+Nominal[SEM=[DISCO=?n]] -> SAdj[NOM=?n] Nombre[TIPO=disco]
+Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] -> Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] SN[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]]
+Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] -> Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] SP[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]]
+Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] -> SN[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]]
+Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] -> SP[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]] Nominal[SEM=[DISCO=?d, AUTOR=?a, CANCION=?c]]
+
+
+SAdj[NOM=?n] -> Adj[NOM=?n]
+
+
+
+
+# ###################
+# Lexical Productions
+# ###################
+Prep -> 'a' | 'al' | 'de' | 'del'
+
+Det -> 'el' | 'la'
+
+Nombre-Propio-Nombre[NOMBRE='bob'] -> 'bob' | 'Bob'
+Nombre-Propio-Apellido[APELLIDO='marley'] -> 'marley' | 'Marley'
+Nombre-Propio-Apellido[APELLIDO='dylan'] -> 'dylan' | 'Dylan'
+
+Nombre-Propio-Disco[DISCO='Blonde on Blonde'] -> 'blonde'
+Nombre-Propio-Disco[DISCO='Blonde on Blonde'] -> 'on'
+
+Nombre[TIPO=cancion] -> 'tema' | 'cancion'
+Nombre[TIPO=disco] -> 'disco'
+
+Adj[NOM=siguiente] -> 'siguiente' | 'proxima' | 'proximo' | 'despues'
+Adj[NOM=anterior] -> 'anterior' | 'previa' | 'previo' | 'antes'
+Adj[NOM=aleatorio] -> 'cualquier' | 'aleatorio' | 'aleatoria'
+Adj[NOM=uno] -> 'uno' | 'primer' | 'primero' | 'primera'
+Adj[NOM=dos] -> 'dos' | 'segundo' | 'segunda'
+Adj[NOM=tres] -> 'tres' | 'tercer' | 'tercero' | 'tercera'
+Adj[NOM=cuatro] -> 'cuatro' | 'cuarto' | 'cuarta'
+
+
+V[ACCION=reproducir] -> 'escuchar' | 'pon' | 'suena' | 'pasa' | 'poner' | 'pasar'
+V[ACCION=parar] -> 'para' | 'parar' | 'detente'

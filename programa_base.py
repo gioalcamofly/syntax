@@ -11,7 +11,7 @@ from nltk import load_parser
 cp = load_parser('gramatica_base.fcfg', trace=2)
 
 
-infile = open('textos.txt')
+infile = open('textos2.txt')
 # Mostramos por pantalla lo que leemos desde el fichero
 for line in infile:
     print(line)
