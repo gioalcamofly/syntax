@@ -12,7 +12,7 @@ S[SEM=[ACCION=avanzar, CANTIDAD=?c, METRICA=?m, VELOCIDAD=?v]] -> V[ACCION=avanz
 S[SEM=[ACCION=girar, DIRECCION=?d, CANTIDAD=?c, METRICA=grados]] -> V[ACCION=girar] SAdj[SEM=[CANTIDAD=?c, METRICA=grados]] SP[DIRECCION=?d]
 S[SEM=[ACCION=girar, DIRECCION=?d, CANTIDAD=?c, METRICA=grados]] -> V[ACCION=girar] SP[DIRECCION=?d] SAdj[SEM=[CANTIDAD=?c, METRICA=grados]]
 
-#S[SEM=[ACCION=decir, CARACTERISTICA=?f, COMPONENTE=?c]] -> V[ACCION=decir] SN[SEM=[CARACTERISTICA=?f, COMPONENTE=?c]]
+S[SEM=[ACCION=decir]] -> V[ACCION=decir] SN[SEM=[SUBCAT=estado]]
 
 
 S[SEM=[ACCION=girar, DIRECCION=?d]] -> V[ACCION=girar] SP[DIRECCION=?d]
@@ -21,20 +21,20 @@ S[SEM=[ACCION=?a]] -> V[ACCION=?a]
 
 
 
-SP[DIRECCION=?d] -> Prep Nominal[DIRECCION=?d]
-SP[VELOCIDAD=?v] -> Prep SN[VELOCIDAD=?v]
+SP[DIRECCION=?d] -> Prep Nominal-Direccion[SEM=[DIRECCION=?d]]
+SP[VELOCIDAD=?v] -> Prep SN[SEM=[SUBCAT=velocidad, VELOCIDAD=?v]]
 
-SN[SEM=[VELOCIDAD=[CANTIDAD=?c, METRICA=?m, TIEMPO=?t]]] -> Adj[CANTIDAD=?c] Nombre[METRICA=?m] Prep Nombre[TIEMPO=?t]
-#SN[SEM=[CARACTERISTICA=?f, COMPONENTE=?c]] -> Nominal[SEM=[CARACTERISTICA=?f]] Prep Nominal[SEM=[COMPONENTE=?c]]
+SN[SEM=[SUBCAT=velocidad, VELOCIDAD=[CANTIDAD=?c, METRICA=?m, TIEMPO=?t]]] -> Adj[CANTIDAD=?c] Nombre[METRICA=?m] Prep Nombre[TIEMPO=?t]
+SN[SEM=[SUBCAT=estado]] -> Nominal[SEM=[TIPO=caracteristica]] Prep Nominal[SEM=[TIPO=componente]]
 
 SAdj[SEM=[CANTIDAD=?c, METRICA=?m]] -> Adj[CANTIDAD=?c] Nombre[METRICA=?m]
 
-Nominal[SEM=[DIRECCION=?d]] -> Nombre[DIRECCION=?d]
-Nominal[SEM=[DIRECCION=?d]] -> Det Nominal[SEM=[DIRECCION=?d]]
-#Nominal[SEM=[CARACTERISTICA=?f]] -> Nombre[CARACTERISTICA=?f]
-#Nominal[SEM=[CARACTERISTICA=?f]] -> Det Nominal[SEM=[CARACTERISTICA=?f]]
-#Nominal[SEM=[COMPONENTE=?c]] -> Nombre[COMPONENTE=?c]
-#Nominal[SEM=[COMPONENTE=?c]] -> Det Nominal[SEM=[COMPONENTE=?c]]
+Nominal-Direccion[SEM=[DIRECCION=?d]] -> Nombre-Direccion[DIRECCION=?d]
+Nominal-Direccion[SEM=[DIRECCION=?d]] -> Det Nominal-Direccion[SEM=[DIRECCION=?d]]
+Nominal[SEM=[TIPO=caracteristica]] -> Nombre[TIPO=caracteristica]
+Nominal[SEM=[TIPO=caracteristica]] -> Det Nominal[SEM=[TIPO=caracteristica]]
+Nominal[SEM=[TIPO=componente]] -> Nombre[TIPO=componente]
+Nominal[SEM=[TIPO=componente]] -> Det Nominal[SEM=[TIPO=componente]]
 
 
 # ###################
@@ -55,15 +55,13 @@ V[ACCION=decir] -> 'dime' | 'decir' | 'muestra' | 'mostrar' | 'muestrame'
 Nombre[METRICA=centimetros] -> 'centimetro' | 'centimetros'
 Nombre[METRICA=metros] -> 'metro' | 'metros'
 Nombre[METRICA=grados] -> 'grado' | 'grados'
-Nombre[DIRECCION=derecha] -> 'derecha'
-Nombre[DIRECCION=izquierda] -> 'izquierda'
+Nombre-Direccion[DIRECCION=derecha] -> 'derecha'
+Nombre-Direccion[DIRECCION=izquierda] -> 'izquierda'
 Nombre[TIEMPO=segundo] -> 'segundo' | 'segundos'
 Nombre[TIEMPO=minuto] -> 'minuto' | 'minutos'
 Nombre[TIEMPO=hora] -> 'hora' | 'horas'
-Nombre[CARACTERISTICA=estado] -> 'estado' | 'situacion'
-Nombre[CARACTERISTICA=capacidad] -> 'capacidad' | 'volumen'
-Nombre[COMPONENTE=bateria] -> 'bateria' | 'pila'
-Nombre[COMPONENTE=memoria] -> 'memoria' | 'almacenamiento'
+Nombre[TIPO=caracteristica] -> 'estado' | 'situacion' | 'capacidad' | 'volumen'
+Nombre[TIPO=componente] -> 'bateria' | 'pila' | 'memoria' | 'almacenamiento'
 
 Adj[CANTIDAD=uno] -> 'un' | 'uno' | '1'
 Adj[CANTIDAD=dos] -> 'dos' | '2'
