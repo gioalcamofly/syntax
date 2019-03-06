@@ -6,7 +6,12 @@ parate
 detente
 parar
 avanza
+gira
 avanza cuatro centimetros
 camina diez metros
 gira a la izquierda
 gira hacia tu derecha
+gira tres grados
+avanza diez metros a tres centimetros por segundo
+camina a tres metros por hora nueve metros
+gira tres grados a la derecha

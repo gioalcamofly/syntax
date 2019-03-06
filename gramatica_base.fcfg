@@ -4,40 +4,74 @@
 # ###################
 # S expansion productions
 S[SEM=[ACCION=avanzar, CANTIDAD=?c, METRICA=?m]] -> V[ACCION=avanzar] SAdj[SEM=[CANTIDAD=?c, METRICA=?m]]
-S[SEM=[ACCION=girar, DIRECCION=?d]] -> V[ACCION=girar] SP[SEM=[DIRECCION=?d]]
+S[SEM=[ACCION=girar, CANTIDAD=?c, METRICA=grados]] -> V[ACCION=girar] SAdj[SEM=[CANTIDAD=?c, METRICA=grados]]
+
+S[SEM=[ACCION=avanzar, CANTIDAD=?c, METRICA=?m, VELOCIDAD=?v]] -> V[ACCION=avanzar] SAdj[SEM=[CANTIDAD=?c, METRICA=?m]] SP[VELOCIDAD=?v]
+S[SEM=[ACCION=avanzar, CANTIDAD=?c, METRICA=?m, VELOCIDAD=?v]] -> V[ACCION=avanzar] SP[VELOCIDAD=?v] SAdj[SEM=[CANTIDAD=?c, METRICA=?m]]
+
+S[SEM=[ACCION=girar, DIRECCION=?d, CANTIDAD=?c, METRICA=grados]] -> V[ACCION=girar] SAdj[SEM=[CANTIDAD=?c, METRICA=grados]] SP[DIRECCION=?d]
+S[SEM=[ACCION=girar, DIRECCION=?d, CANTIDAD=?c, METRICA=grados]] -> V[ACCION=girar] SP[DIRECCION=?d] SAdj[SEM=[CANTIDAD=?c, METRICA=grados]]
+
+#S[SEM=[ACCION=decir, CARACTERISTICA=?f, COMPONENTE=?c]] -> V[ACCION=decir] SN[SEM=[CARACTERISTICA=?f, COMPONENTE=?c]]
+
+
+S[SEM=[ACCION=girar, DIRECCION=?d]] -> V[ACCION=girar] SP[DIRECCION=?d]
+
 S[SEM=[ACCION=?a]] -> V[ACCION=?a]
 
-SP[SEM=[DIRECCION=?d]] -> Prep Det Nombre[DIRECCION=?d]
+
+
+SP[DIRECCION=?d] -> Prep Nominal[DIRECCION=?d]
+SP[VELOCIDAD=?v] -> Prep SN[VELOCIDAD=?v]
+
+SN[SEM=[VELOCIDAD=[CANTIDAD=?c, METRICA=?m, TIEMPO=?t]]] -> Adj[CANTIDAD=?c] Nombre[METRICA=?m] Prep Nombre[TIEMPO=?t]
+#SN[SEM=[CARACTERISTICA=?f, COMPONENTE=?c]] -> Nominal[SEM=[CARACTERISTICA=?f]] Prep Nominal[SEM=[COMPONENTE=?c]]
 
 SAdj[SEM=[CANTIDAD=?c, METRICA=?m]] -> Adj[CANTIDAD=?c] Nombre[METRICA=?m]
+
+Nominal[SEM=[DIRECCION=?d]] -> Nombre[DIRECCION=?d]
+Nominal[SEM=[DIRECCION=?d]] -> Det Nominal[SEM=[DIRECCION=?d]]
+#Nominal[SEM=[CARACTERISTICA=?f]] -> Nombre[CARACTERISTICA=?f]
+#Nominal[SEM=[CARACTERISTICA=?f]] -> Det Nominal[SEM=[CARACTERISTICA=?f]]
+#Nominal[SEM=[COMPONENTE=?c]] -> Nombre[COMPONENTE=?c]
+#Nominal[SEM=[COMPONENTE=?c]] -> Det Nominal[SEM=[COMPONENTE=?c]]
 
 
 # ###################
 # Lexical Productions
 # ###################
 
-Prep -> 'a' | 'hacia'
-Det -> 'la' | 'mi' | 'tu' | 'su'
+Prep -> 'a' | 'hacia' | 'por' | 'de'
+Det -> 'el' | 'la' | 'mi' | 'tu' | 'su'
 
 V[ACCION=conectarse] -> 'enciendete' | 'enciende' | 'conectate' | 'conecta' | 'activate' | 'activa'
 V[ACCION=desconectarse] -> 'desconectate' | 'desconecta' |'desconectar' | 'apagate' | 'apaga' | 'apagar' | 'desactivate' | 'desactiva' | 'apagar'
 V[ACCION=parar] -> 'parar' | 'parate' | 'para' | 'detente' | 'deten' | 'detener'
 V[ACCION=avanzar] -> 'avanza' | 'avanzar' | 'camina' | 'caminar'
 V[ACCION=girar] -> 'gira' | 'girar'
+V[ACCION=decir] -> 'dime' | 'decir' | 'muestra' | 'mostrar' | 'muestrame'
 
 
 Nombre[METRICA=centimetros] -> 'centimetro' | 'centimetros'
 Nombre[METRICA=metros] -> 'metro' | 'metros'
+Nombre[METRICA=grados] -> 'grado' | 'grados'
 Nombre[DIRECCION=derecha] -> 'derecha'
 Nombre[DIRECCION=izquierda] -> 'izquierda'
+Nombre[TIEMPO=segundo] -> 'segundo' | 'segundos'
+Nombre[TIEMPO=minuto] -> 'minuto' | 'minutos'
+Nombre[TIEMPO=hora] -> 'hora' | 'horas'
+Nombre[CARACTERISTICA=estado] -> 'estado' | 'situacion'
+Nombre[CARACTERISTICA=capacidad] -> 'capacidad' | 'volumen'
+Nombre[COMPONENTE=bateria] -> 'bateria' | 'pila'
+Nombre[COMPONENTE=memoria] -> 'memoria' | 'almacenamiento'
 
-Adj[CANTIDAD=uno] -> 'un' | 'uno'
-Adj[CANTIDAD=dos] -> 'dos'
-Adj[CANTIDAD=tres] -> 'tres'
-Adj[CANTIDAD=cuatro] -> 'cuatro'
-Adj[CANTIDAD=cinco] -> 'cinco'
-Adj[CANTIDAD=seis] -> 'seis'
-Adj[CANTIDAD=siete] -> 'siete'
-Adj[CANTIDAD=ocho] -> 'ocho'
-Adj[CANTIDAD=nueve] -> 'nueve'
-Adj[CANTIDAD=diez] -> 'diez'
+Adj[CANTIDAD=uno] -> 'un' | 'uno' | '1'
+Adj[CANTIDAD=dos] -> 'dos' | '2'
+Adj[CANTIDAD=tres] -> 'tres' | '3'
+Adj[CANTIDAD=cuatro] -> 'cuatro' | '4'
+Adj[CANTIDAD=cinco] -> 'cinco' | '5'
+Adj[CANTIDAD=seis] -> 'seis' | '6'
+Adj[CANTIDAD=siete] -> 'siete' | '7'
+Adj[CANTIDAD=ocho] -> 'ocho' | '8'
+Adj[CANTIDAD=nueve] -> 'nueve' | '9'
+Adj[CANTIDAD=diez] -> 'diez' | '10'
