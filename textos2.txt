@@ -17,3 +17,5 @@ camina a tres metros por hora nueve metros
 gira tres grados a la derecha
 dime el estado de tu bateria
 dime la capacidad de la memoria
+indica el estado de tu bateria
+indica tu bateria

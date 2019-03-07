@@ -3,6 +3,7 @@
 # Grammar Productions
 # ###################
 # S expansion productions
+
 S[SEM=[ACCION=avanzar, CANTIDAD=?c, METRICA=?m]] -> V[ACCION=avanzar] SAdj[SEM=[CANTIDAD=?c, METRICA=?m]]
 S[SEM=[ACCION=girar, CANTIDAD=?c, METRICA=grados]] -> V[ACCION=girar] SAdj[SEM=[CANTIDAD=?c, METRICA=grados]]
 
@@ -19,20 +20,22 @@ S[SEM=[ACCION=girar, DIRECCION=?d]] -> V[ACCION=girar] SP[DIRECCION=?d]
 
 S[SEM=[ACCION=?a]] -> V[ACCION=?a]
 
-
-
 SP[DIRECCION=?d] -> Prep Nominal-Direccion[SEM=[DIRECCION=?d]]
 SP[VELOCIDAD=?v] -> Prep SN[SEM=[SUBCAT=velocidad, VELOCIDAD=?v]]
 
 SN[SEM=[SUBCAT=velocidad, VELOCIDAD=[CANTIDAD=?c, METRICA=?m, TIEMPO=?t]]] -> Adj[CANTIDAD=?c] Nombre[METRICA=?m] Prep Nombre[TIEMPO=?t]
+
+SN[SEM=[SUBCAT=estado]] -> Nominal[SEM=[TIPO=componente]]
 SN[SEM=[SUBCAT=estado]] -> Nominal[SEM=[TIPO=caracteristica]] Prep Nominal[SEM=[TIPO=componente]]
 
 SAdj[SEM=[CANTIDAD=?c, METRICA=?m]] -> Adj[CANTIDAD=?c] Nombre[METRICA=?m]
 
 Nominal-Direccion[SEM=[DIRECCION=?d]] -> Nombre-Direccion[DIRECCION=?d]
 Nominal-Direccion[SEM=[DIRECCION=?d]] -> Det Nominal-Direccion[SEM=[DIRECCION=?d]]
+
 Nominal[SEM=[TIPO=caracteristica]] -> Nombre[TIPO=caracteristica]
 Nominal[SEM=[TIPO=caracteristica]] -> Det Nominal[SEM=[TIPO=caracteristica]]
+
 Nominal[SEM=[TIPO=componente]] -> Nombre[TIPO=componente]
 Nominal[SEM=[TIPO=componente]] -> Det Nominal[SEM=[TIPO=componente]]
 
@@ -49,7 +52,7 @@ V[ACCION=desconectarse] -> 'desconectate' | 'desconecta' |'desconectar' | 'apaga
 V[ACCION=parar] -> 'parar' | 'parate' | 'para' | 'detente' | 'deten' | 'detener'
 V[ACCION=avanzar] -> 'avanza' | 'avanzar' | 'camina' | 'caminar'
 V[ACCION=girar] -> 'gira' | 'girar'
-V[ACCION=decir] -> 'dime' | 'decir' | 'muestra' | 'mostrar' | 'muestrame'
+V[ACCION=decir] -> 'dime' | 'decir' | 'indicar' | 'indicame' | 'indica' | 'muestra' | 'mostrar' | 'muestrame'
 
 
 Nombre[METRICA=centimetros] -> 'centimetro' | 'centimetros'

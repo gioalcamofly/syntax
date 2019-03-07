@@ -1,0 +1,9 @@
+avanza tres centimetros a diez metros por segundo --
+camina a diez centimetros por hora --
+girar --
+gira cinco grados a la derecha --
+cuanta bateria te queda
+indica tu carga --
+cuanto te queda de carga
+para --
+cuanta bateria te queda
